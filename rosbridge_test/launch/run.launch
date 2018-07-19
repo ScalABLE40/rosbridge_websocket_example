@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <arg name='subscribing_topic' default="to_ros_node"/>
+    <arg name='publishing_topic' default="from_ros_node"/>
+
+    <node pkg="rosbridge_test" type="rosbridge_test.py" name="rosbridge_test" output="screen">
+        <param name='subscribing_topic' value='$(arg subscribing_topic)' />
+        <param name='publishing_topic' value='$(arg publishing_topic)' />
+    </node>
+
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" >
+     <arg name="port" value="9090"/>
+  </include>
+
+</launch>
